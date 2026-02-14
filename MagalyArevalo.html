@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para el Amor de Mi Vida ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff0066, #ff3399);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+.San_Valentin{
+    position: relative;
+    width: 90%;
+    max-width: 700px;
+    background: #f5e6d3;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+h1{
+    text-align:center;
+    color:#cc0066;
+}
+
+p{
+    font-size:18px;
+    color:#444;
+}
+
+#contador{
+    font-weight:bold;
+    font-size:1.3rem;
+    margin-top:20px;
+    color:#cc0066;
+}
+
+/* Corazón */
+.tree{
+    position:absolute;
+    right:40px;
+    bottom:40px;
+    width:150px;
+    height:200px;
+}
+
+.heart{
+    width:150px;
+    height:150px;
+    background:red;
+    position:absolute;
+    top:0;
+    left:0;
+    transform: rotate(-45deg);
+    animation: latido 1s infinite;
+}
+
+.heart:before,
+.heart:after{
+    content:"";
+    width:150px;
+    height:150px;
+    background:red;
+    border-radius:50%;
+    position:absolute;
+}
+
+.heart:before{
+    top:-75px;
+    left:0;
+}
+
+.heart:after{
+    left:75px;
+    top:0;
+}
+
+.trunk{
+    position:absolute;
+    bottom:-50px;
+    left:65px;
+    width:20px;
+    height:60px;
+    background:#8B4513;
+}
+
+@keyframes latido{
+    0%{ transform: rotate(-45deg) scale(1); }
+    50%{ transform: rotate(-45deg) scale(1.1); }
+    100%{ transform: rotate(-45deg) scale(1); }
+}
+
+/* Corazones flotando */
+.corazon{
+    position:absolute;
+    color:white;
+    font-size:20px;
+    animation: flotar 5s linear infinite;
+}
+
+@keyframes flotar{
+    from{ transform: translateY(100vh); opacity:1; }
+    to{ transform: translateY(-10vh); opacity:0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="San_Valentin">
+    <h1>Para el amor de mi vida ❤️</h1>
+    <p>Si pudiera elegir un lugar seguro, sería a tu lado.</p>
+    <p>Cuanto más tiempo estoy contigo más te amo.</p>
+
+    <p>Mi amor por ti comenzó hace...</p>
+    <div id="contador"></div>
+
+    <div class="tree">
+        <div class="heart"></div>
+        <div class="trunk"></div>
+    </div>
+</div>
+
+<script>
+// Tiempo inicial
+let dias = 238;
+let horas = 16;
+let minutos = 9;
+let segundos = 35;
+
+function actualizarContador(){
+    segundos++;
+    if(segundos >= 60){
+        segundos = 0;
+        minutos++;
+    }
+    if(minutos >= 60){
+        minutos = 0;
+        horas++;
+    }
+    if(horas >= 24){
+        horas = 0;
+        dias++;
+    }
+
+    document.getElementById("contador").innerHTML =
+        dias + " días " +
+        horas + " horas " +
+        minutos + " minutos " +
+        segundos + " segundos ❤️";
+}
+
+setInterval(actualizarContador, 1000);
+actualizarContador();
+
+// Corazones flotando
+function crearCorazon(){
+    const corazon = document.createElement("div");
+    corazon.classList.add("corazon");
+    corazon.innerHTML = "❤️";
+    corazon.style.left = Math.random() * 100 + "vw";
+    corazon.style.animationDuration = (3 + Math.random() * 2) + "s";
+    document.body.appendChild(corazon);
+
+    setTimeout(() => {
+        corazon.remove();
+    }, 5000);
+}
+
+setInterval(crearCorazon, 500);
+</script>
+
+</body>
+</html>
